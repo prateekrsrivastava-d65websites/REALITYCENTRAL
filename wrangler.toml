@@ -5,4 +5,4 @@ compatibility_date = "2026-06-27"
 [[d1_databases]]
 binding = "DB"
 database_name = "realitycentral-db"
-database_id = "REPLACE_WITH_CLOUDFLARE_D1_DATABASE_ID"
+database_id = "211c08f0-af48-40db-903a-4e08a2d85758"
