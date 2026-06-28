@@ -77,7 +77,7 @@ function App() {
           <div className="mark"><Building2 size={22} /></div>
           <div>
             <strong>REALITYCENTRAL</strong>
-            <span>Agent revenue cockpit</span>
+            <span>Listing copilot</span>
           </div>
         </div>
         <nav>
@@ -90,17 +90,17 @@ function App() {
           ))}
         </nav>
         <div className="plan">
-          <span>Launch offer</span>
+          <span>ROI signal</span>
           <strong>$49/mo</strong>
-          <p>Unlimited drafts, seller reports, and follow-up scripts for solo agents.</p>
+          <p>One extra showing or saved seller saves the month.</p>
         </div>
       </aside>
 
       <section className="workspace">
         <header className="topbar">
           <div>
-            <h1>Turn one listing intake into a complete marketing engine.</h1>
-          <p>Built for agents who need better copy, faster follow-up, cleaner seller proof, smarter lead prioritization, and more booked showings today.</p>
+            <h1>What should this listing say, prove, and trigger next?</h1>
+          <p>Enter the property once. REALITYCENTRAL returns the copy, seller proof, lead actions, and launch plan an agent can use today.</p>
           </div>
           <div className="actions">
             <button className="secondary" onClick={download}><Download size={17} /> Export kit</button>
@@ -108,7 +108,7 @@ function App() {
           </div>
         </header>
 
-        <section className="metrics">
+        <section className="metrics" aria-label="ROI highlights">
           <Metric icon={<Wand2 />} label="Assets generated" value={kit.length.toString()} />
           <Metric icon={<CalendarCheck />} label="Hours saved/listing" value={`${projectedHours}+`} />
           <Metric icon={<Sparkles />} label="Listing score" value={`${asset.score}/100`} />
@@ -119,8 +119,8 @@ function App() {
           <div className="panel input-panel">
             <div className="panel-head">
               <div>
-                <h2>Listing Intake</h2>
-                <p>Change any detail and every asset updates instantly.</p>
+                <h2>Property Context</h2>
+                <p>Edit the brief. The answer updates instantly.</p>
               </div>
               <button className="icon-button" title="Upload photos"><Upload size={18} /></button>
             </div>
