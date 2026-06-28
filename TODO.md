@@ -12,6 +12,19 @@
 - Add Outlook OAuth for selected folders.
 - Add opt-in, opt-out, and compliance guardrails for texting.
 
+## Zillow-Style Listing Website
+
+- Build public listing pages for an agent's own listings.
+- Add manual listing entry and CSV import.
+- Add listing search/filter UI.
+- Add public lead capture forms.
+- Add showing request form.
+- Add open-house QR landing page per listing.
+- Connect captured leads back to the listing workflow.
+- Add seller-facing listing activity page.
+- Later: investigate MLS/IDX/Bridge access for live listing feeds.
+- Avoid depending on Zillow data for the MVP.
+
 ## Product Clarity
 
 - Turn each generated feature into an interactive workflow over time.
