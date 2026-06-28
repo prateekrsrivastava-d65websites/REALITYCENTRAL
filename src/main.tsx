@@ -9,6 +9,7 @@ import {
   Clipboard,
   Download,
   Home,
+  Import,
   Mail,
   Megaphone,
   MessageSquareText,
@@ -26,7 +27,10 @@ const icons: Record<Channel, React.ReactNode> = {
   email: <Mail size={18} />,
   ads: <BarChart3 size={18} />,
   seller: <BadgeDollarSign size={18} />,
-  followup: <MessageSquareText size={18} />
+  followup: <MessageSquareText size={18} />,
+  pipeline: <CalendarCheck size={18} />,
+  cma: <BarChart3 size={18} />,
+  import: <Import size={18} />
 };
 
 function App() {
@@ -94,7 +98,7 @@ function App() {
         <header className="topbar">
           <div>
             <h1>Turn one listing intake into a complete marketing engine.</h1>
-            <p>Built for agents who need better copy, faster follow-up, cleaner seller proof, and more booked showings today.</p>
+          <p>Built for agents who need better copy, faster follow-up, cleaner seller proof, smarter lead prioritization, and more booked showings today.</p>
           </div>
           <div className="actions">
             <button className="secondary" onClick={download}><Download size={17} /> Export kit</button>

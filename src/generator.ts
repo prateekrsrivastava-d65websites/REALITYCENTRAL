@@ -1,4 +1,4 @@
-import type { Asset, PropertyInput } from "./types";
+import type { Asset, LeadSignal, PipelineStage, PropertyInput } from "./types";
 
 const money = (value: number) =>
   new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
@@ -68,8 +68,59 @@ export function buildMarketingKit(input: PropertyInput): Asset[] {
       value: "More offers",
       score: 90,
       body: `After Showing SMS:\nThanks for touring ${shortAddress}. Based on what you said, I think the strongest fit is ${h[0]}. Want me to send comps and next-step numbers?\n\nSoft Push SMS:\nThis one may move because it checks the common boxes: ${h.slice(0, 3).join(", ")}. Want to talk through offer strategy before the next showing block?\n\nVoicemail:\nHi {{first_name}}, it is ${input.agentName || "your agent"}. I wanted to follow up on ${shortAddress}. I pulled a few quick notes on value, likely competition, and where I think there may be room to negotiate. Call me when you have two minutes.`
+    },
+    {
+      id: "pipeline",
+      title: "Lead Pipeline Autopilot",
+      subtitle: "CRM-lite action plan inspired by proven real estate pipeline systems.",
+      value: "Next actions",
+      score: 94,
+      body: `Pipeline stages for this listing:\n${pipelineStages.map((stage, index) => `${index + 1}. ${stage.label}: ${stage.nextAction}`).join("\n")}\n\nHot lead scoring model:\n- Activity engagement: up to 40 points\n- Temperature: up to 25 points\n- Speed-to-lead: up to 20 points\n- Source quality: up to 15 points\n\nToday's top leads:\n${sampleLeads.map((lead) => {
+        const score = scoreLead(lead);
+        return `- ${lead.name}: ${score}/100 from ${lead.source}. Next move: ${score >= 75 ? "call now and send offer-readiness packet" : score >= 50 ? "send showing slots and ask timeline" : "add to nurture with value update"}.`;
+      }).join("\n")}\n\nAgent rule: no lead should sit without a next action. Every conversation becomes a task, sequence, showing, offer, or nurture.`
+    },
+    {
+      id: "cma",
+      title: "Seller CMA & Comps Angle",
+      subtitle: "A simple comp-scoring frame agents can explain to sellers.",
+      value: "Win listing",
+      score: 92,
+      body: `CMA scoring framework for ${shortAddress}:\n- Location fit: 25 points\n- Property type fit: 20 points\n- Size similarity: 15 points\n- Bed/bath similarity: 15 points\n- Recency: 15 points\n- Feature overlap: 10 points\n\nSeller script:\nI do not price your home from a single comp or a guess. I score the closest comparable sales across location, property type, size, room count, recency, and feature overlap. Then I use the highest-confidence comps to choose a launch price that protects your upside without letting the listing go stale.\n\nPositioning note:\nAt ${money(input.price)}, lead with ${h.slice(0, 3).join(", ")}. If buyer feedback clusters around ${objections[0] || "price"}, prepare a proof-backed response using the top three comps and showing activity from the first 7 days.\n\nSeller report section:\n- Launch price rationale\n- Top competing active listings\n- Top sold comps\n- Buyer objections heard\n- Recommended adjustment trigger if showing activity is weak`
+    },
+    {
+      id: "import",
+      title: "Property Data Import Schema",
+      subtitle: "Structured fields for MLS/Zillow/Realtor/Redfin-style extraction.",
+      value: "JSON-ready",
+      score: 89,
+      body: `Use this schema for listing imports, comps, and future BrightData-style extraction:\n\n{\n  "address": "${shortAddress}",\n  "city": "${location}",\n  "price": ${input.price},\n  "bedrooms": ${input.beds},\n  "bathrooms": ${input.baths},\n  "square_feet": ${input.sqft},\n  "lot_size": null,\n  "year_built": null,\n  "property_type": "${input.propertyType}",\n  "listing_agent": "${input.agentName}",\n  "brokerage": "${input.brokerage}",\n  "days_on_market": null,\n  "mls_number": null,\n  "description": null,\n  "image_urls": [],\n  "neighborhood": "${location}",\n  "highlights": ${JSON.stringify(h)},\n  "known_objections": ${JSON.stringify(objections)}\n}\n\nImport guardrails:\n- Validate every numeric field before using it in pricing copy.\n- Store source URL and import timestamp.\n- Flag stale comps older than 180 days.\n- Never publish scraped descriptions verbatim; use them as facts, then generate original copy.`
     }
   ];
+}
+
+export const pipelineStages: PipelineStage[] = [
+  { key: "new", label: "New lead", nextAction: "respond inside 5 minutes with showing availability" },
+  { key: "qualified", label: "Qualified buyer", nextAction: "confirm budget, timeline, must-haves, and lender status" },
+  { key: "showing", label: "Showing scheduled", nextAction: "send prep text, map link, and property one-sheet" },
+  { key: "feedback", label: "Post-showing feedback", nextAction: "send follow-up within 60 minutes" },
+  { key: "offer", label: "Offer strategy", nextAction: "send comps, seller context, and decision deadline" },
+  { key: "nurture", label: "Long-term nurture", nextAction: "send weekly match, price-drop, or market update" }
+];
+
+export const sampleLeads: LeadSignal[] = [
+  { name: "Sarah M.", source: "referral", temperature: "hot", activities: 7, lastActivityDays: 1, firstContactHours: 1 },
+  { name: "Daniel R.", source: "open_house", temperature: "warm", activities: 4, lastActivityDays: 3, firstContactHours: 4 },
+  { name: "Priya K.", source: "zillow", temperature: "warm", activities: 2, lastActivityDays: 9, firstContactHours: 18 }
+];
+
+export function scoreLead(lead: LeadSignal): number {
+  const activity = lead.activities >= 10 ? 20 : lead.activities >= 5 ? 14 : lead.activities >= 3 ? 8 : lead.activities >= 1 ? 4 : 0;
+  const recency = lead.lastActivityDays <= 2 ? 20 : lead.lastActivityDays <= 7 ? 14 : lead.lastActivityDays <= 14 ? 8 : lead.lastActivityDays <= 30 ? 4 : 0;
+  const temp = lead.temperature === "hot" ? 25 : lead.temperature === "warm" ? 14 : 0;
+  const speed = lead.firstContactHours <= 1 ? 20 : lead.firstContactHours <= 4 ? 15 : lead.firstContactHours <= 24 ? 10 : lead.firstContactHours <= 72 ? 5 : 0;
+  const source = ["referral", "past_client", "sphere", "sign_call", "open_house"].includes(lead.source) ? 15 : ["website", "zillow", "realtor_com", "mls"].includes(lead.source) ? 8 : 3;
+  return Math.min(activity + recency + temp + speed + source, 100);
 }
 
 export const starterInput: PropertyInput = {

@@ -31,3 +31,10 @@ Cloudflare Pages Functions are scaffolded under `functions/` for health checks, 
 - Gemini: photo analysis and room-level highlights.
 - Stripe: $49 solo plan, $99 teams plan, usage-gated free trial.
 - Resend: send generated nurture sequences directly.
+
+## Open-Source Research Used
+
+- `AleksNeStu/ai-real-estate-assistant` inspired the prompt-template, CMA, provider, and market-insight direction.
+- `InsulaCRM/InsulaCRM` inspired the CRM-lite stages, lead scoring, showing follow-up, and workflow ideas.
+- `brightdata/real-estate-ai-agent` inspired the strict property import JSON schema.
+- `prolinkinfo/RealEstateCRM` reinforced the agent-first dashboard and communication workflow priorities.
