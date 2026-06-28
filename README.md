@@ -9,6 +9,33 @@ AI-assisted real estate marketing cockpit for agents. The app turns one property
 - Gives agents immediate follow-up scripts to convert showings into offers.
 - Creates reusable marketing assets from a single intake.
 
+## Realtor Feedback Version
+
+REALITYCENTRAL is a listing launch assistant, not a replacement for your CRM or MLS.
+
+You enter the property once, and it gives you the material and next steps needed to win the listing, market it, reassure the seller, and follow up with buyers.
+
+What it helps with:
+
+- Write MLS descriptions, social posts, emails, ads, and follow-up texts faster.
+- Send sellers proof that work is happening every week.
+- Capture open-house visitors with a QR flow and route hot leads quickly.
+- Track buyer objections so price and positioning conversations are based on patterns, not feelings.
+- Prepare hot buyers for serious offer conversations.
+- Build a 7-day launch plan and 14-day content calendar for every listing.
+- Keep the agent's own voice consistent across all copy.
+
+The pitch to an agent:
+
+> Keep your CRM. Keep your MLS. Use REALITYCENTRAL to turn every listing into a launch plan, seller report, follow-up system, and content engine in minutes.
+
+Questions to ask realtors:
+
+- Which of these outputs would you actually use weekly?
+- What do you already have covered by your CRM or brokerage tools?
+- Where do you lose the most time: writing, seller updates, open-house follow-up, buyer follow-up, or content?
+- Would you pay per listing, monthly, or only for done-for-you concierge execution?
+
 ## Deploy
 
 Cloudflare Pages or GitHub Pages can build this as a static Vite app.
@@ -31,6 +58,28 @@ Cloudflare Pages Functions are scaffolded under `functions/` for health checks, 
 - Gemini: photo analysis and room-level highlights.
 - Stripe: $49 solo plan, $99 teams plan, usage-gated free trial.
 - Resend: send generated nurture sequences directly.
+
+## TODO: Email and Text Integration
+
+MVP path:
+
+- Add unique inbound email addresses for each agent, e.g. `maya@inbound.realitycentral.ai`.
+- Let agents forward or BCC client threads into REALITYCENTRAL.
+- Parse forwarded emails into listing, contact, urgency, objection, and next action.
+- Add Twilio inbound SMS numbers for agents.
+- Log incoming buyer/seller texts and generate suggested replies.
+- Detect unanswered hot leads and create follow-up tasks.
+- Add a conversation summary view per listing/contact.
+
+Deeper path:
+
+- Gmail OAuth integration for selected labels only.
+- Outlook OAuth integration for selected folders only.
+- Two-way email sync with thread mapping.
+- Draft replies inside REALITYCENTRAL without sending automatically.
+- SMS opt-in/opt-out handling and compliance guardrails.
+- Contact deduplication across email, phone, open-house QR, and manual intake.
+- Daily "missed money" digest: hot leads waiting, seller updates due, unanswered objections.
 
 ## Open-Source Research Used
 

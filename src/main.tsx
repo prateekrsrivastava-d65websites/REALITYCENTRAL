@@ -25,7 +25,7 @@ import {
   Workflow
 } from "lucide-react";
 import { buildMarketingKit, starterInput } from "./generator";
-import type { Asset, Channel, PropertyInput } from "./types";
+import type { Asset, Channel, FeatureBrief, PropertyInput } from "./types";
 import "./styles.css";
 
 const icons: Record<Channel, React.ReactNode> = {
@@ -47,6 +47,99 @@ const icons: Record<Channel, React.ReactNode> = {
   voice: <Mic2 size={18} />,
   playbooks: <Workflow size={18} />,
   calendar: <Tags size={18} />
+};
+
+const featureBriefs: Record<Channel, FeatureBrief> = {
+  listing: {
+    job: "Turn rough property notes into polished MLS-ready copy.",
+    roi: "Saves 30-60 minutes and makes the listing look more premium from day one.",
+    next: "Paste this into MLS, Zillow, flyers, or your listing page."
+  },
+  social: {
+    job: "Create launch posts without staring at a blank screen.",
+    roi: "More consistent promotion means more buyer attention and seller confidence.",
+    next: "Post the Instagram hook first, then reuse Facebook and LinkedIn copy."
+  },
+  email: {
+    job: "Follow up with warm buyers before they go cold.",
+    roi: "Faster follow-up creates more showings from the same lead flow.",
+    next: "Send Email 1 to new buyer leads, then schedule the next two touches."
+  },
+  ads: {
+    job: "Give paid campaigns clear hooks and CTAs.",
+    roi: "Better hooks reduce wasted ad spend and improve showing intent.",
+    next: "Use the Meta copy for awareness and retargeting copy for warm visitors."
+  },
+  seller: {
+    job: "Show the seller exactly what you are doing to market the home.",
+    roi: "Reduces anxious seller calls and helps justify your commission.",
+    next: "Send this after launch or before the first weekly seller check-in."
+  },
+  followup: {
+    job: "Convert showings into second showings, comps calls, or offers.",
+    roi: "Most money is lost in slow follow-up. This closes that gap.",
+    next: "Text every showing attendee within 60 minutes."
+  },
+  pipeline: {
+    job: "Prioritize leads by urgency instead of memory.",
+    roi: "Hot buyers get attention first, weak leads go into nurture.",
+    next: "Call the highest-score lead and assign a next action to every lead."
+  },
+  cma: {
+    job: "Explain pricing to sellers in plain language.",
+    roi: "Better price conversations help win listings and avoid stale listings.",
+    next: "Use this during listing presentations or price adjustment calls."
+  },
+  import: {
+    job: "Standardize listing facts from MLS or property websites.",
+    roi: "Cleaner data means faster generation and fewer embarrassing mistakes.",
+    next: "Use this schema when wiring MLS, Zillow, Realtor, or Redfin imports."
+  },
+  ops: {
+    job: "Run the first week after launch without forgetting steps.",
+    roi: "A tighter launch window creates more activity while buyer attention is highest.",
+    next: "Follow the 7-day plan and send the Day 4 seller update."
+  },
+  seller_update: {
+    job: "Send sellers a calm weekly proof-of-work report.",
+    roi: "Keeps sellers from wondering what you do all week.",
+    next: "Send every Friday with traffic, feedback, objections, and next recommendation."
+  },
+  open_house: {
+    job: "Turn open-house visitors into structured leads.",
+    roi: "More follow-upable leads from the same event.",
+    next: "Put this behind a QR code at the door."
+  },
+  objections: {
+    job: "Track repeated buyer resistance and turn it into strategy.",
+    roi: "Shows sellers when feedback is real market data, not random opinion.",
+    next: "Log each objection after showings and review patterns weekly."
+  },
+  offer_room: {
+    job: "Move interested buyers into serious offer conversations.",
+    roi: "More hot buyers become real offers instead of vague interest.",
+    next: "Use this checklist before every offer strategy call."
+  },
+  photo_ai: {
+    job: "Use listing photos to find better marketing angles.",
+    roi: "Better photo-led copy makes the property feel more specific and memorable.",
+    next: "Wire this to Gemini vision when photo upload is enabled."
+  },
+  voice: {
+    job: "Make every output sound like the agent, not generic AI.",
+    roi: "Consistent voice builds trust and keeps agents from rewriting everything.",
+    next: "Save this as the agent's default brand voice."
+  },
+  playbooks: {
+    job: "Pick a proven strategy for the listing situation.",
+    roi: "Repeatable playbooks reduce guesswork and speed up launch.",
+    next: "Choose the closest playbook before generating final assets."
+  },
+  calendar: {
+    job: "Plan two weeks of listing content from one intake.",
+    roi: "More touches without daily content planning.",
+    next: "Schedule Day 1-7 immediately after launch."
+  }
 };
 
 function App() {
@@ -165,6 +258,20 @@ function App() {
                 <p>{asset.subtitle}</p>
               </div>
               <div className="pill">{asset.value}</div>
+            </div>
+            <div className="why-panel" aria-label="Why this feature matters">
+              <div>
+                <span>Job</span>
+                <strong>{featureBriefs[asset.id].job}</strong>
+              </div>
+              <div>
+                <span>ROI</span>
+                <strong>{featureBriefs[asset.id].roi}</strong>
+              </div>
+              <div>
+                <span>Next</span>
+                <strong>{featureBriefs[asset.id].next}</strong>
+              </div>
             </div>
             <pre>{asset.body}</pre>
           </div>

@@ -45,6 +45,12 @@ export type Asset = {
   score: number;
 };
 
+export type FeatureBrief = {
+  job: string;
+  roi: string;
+  next: string;
+};
+
 export type LeadSignal = {
   name: string;
   source: string;
