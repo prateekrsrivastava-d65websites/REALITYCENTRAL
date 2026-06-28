@@ -20,6 +20,73 @@ export function buildMarketingKit(input: PropertyInput): Asset[] {
   const cta = `Call or text ${input.agentName || "the listing agent"}${input.phone ? ` at ${input.phone}` : ""} to book a private showing.`;
   const signature = `${input.agentName || "Your agent"}${input.brokerage ? `, ${input.brokerage}` : ""}${input.email ? ` | ${input.email}` : ""}`;
 
+  const growthAssets: Asset[] = [
+    {
+      id: "seller_update",
+      title: "Seller Update Generator",
+      subtitle: "Weekly proof-of-work report that keeps sellers calm and loyal.",
+      value: "Save seller",
+      score: 98,
+      body: `Subject: Weekly update for ${shortAddress}\n\nHi {{seller_first_name}},\n\nHere is the clear picture from this week.\n\nWhat we did:\n- Published and positioned the listing around ${h.slice(0, 3).join(", ")}\n- Sent buyer-facing copy, social posts, and follow-up messages\n- Prepared objection responses around ${objections[0] || "price and buyer fit"}\n- Continued pushing qualified buyers toward private showings\n\nWhat buyers are reacting to:\n- Strongest positive: ${h[0]}\n- Second strongest positive: ${h[1] || "the layout"}\n- Watch item: ${objections[0] || "we need more showing feedback before changing strategy"}\n\nRecommendation:\nHold the current positioning until we have enough showing data. If traffic is strong but offers lag, we adjust the narrative first. If traffic is weak, we review price, photos, and distribution.\n\nThis week matters because buyer attention is highest early. I will keep you updated with facts, not guesses.\n\n${signature}`
+    },
+    {
+      id: "open_house",
+      title: "Open House QR Capture",
+      subtitle: "Mobile sign-in script, lead questions, and instant follow-up routing.",
+      value: "More leads",
+      score: 96,
+      body: `QR sign-in page copy:\nWelcome to ${shortAddress}. Sign in to receive photos, disclosures, private showing slots, and nearby comparable homes.\n\nFields to capture:\n- Name\n- Phone\n- Email\n- Buying timeline: now, 30 days, 90 days, browsing\n- Financing: pre-approved, cash, needs lender, unknown\n- Interest level: hot, warm, cold\n- Main question or objection\n\nInstant routing:\n- Hot + pre-approved: send offer-readiness text and call within 15 minutes.\n- Warm + 30/90 days: send comps and ask must-haves.\n- Browsing: add to neighborhood nurture.\n\nPost-open-house SMS:\nThanks for stopping by ${shortAddress}. Based on what you saw, should I send comps, private showing times, or similar homes nearby?\n\nAgent note:\nThe QR page should feel like service, not lead capture. Offer value first: photos, comps, disclosure packet, showing slots.`
+    },
+    {
+      id: "objections",
+      title: "Objection Intelligence",
+      subtitle: "Turn buyer resistance into seller strategy and better follow-up.",
+      value: "Price signal",
+      score: 95,
+      body: `Objection tracker for ${shortAddress}:\n${(objections.length ? objections : ["price", "condition", "timing"]).map((item) => `- ${item}: log count, buyer segment, and whether it blocked an offer.`).join("\n")}\n\nSeller-safe interpretation:\nOne objection is feedback. Repeated objections are market data. We should not react emotionally, but we should watch patterns.\n\nResponse scripts:\nPrice: I understand. The useful question is whether the market agrees after comparing recent sales and current competition.\nCondition: That is fair. If the rest of the home works, we can discuss credits, repairs, or pricing strategy.\nTiming: If the home fits, the next step is to understand whether timing can be solved with terms.\n\nDecision rule:\n- High traffic + repeated same objection: adjust narrative or terms.\n- Low traffic + few showings: improve distribution, photos, or price.\n- High saves + low showings: CTA or qualification friction is too high.`
+    },
+    {
+      id: "offer_room",
+      title: "Offer Readiness Room",
+      subtitle: "Checklist and scripts that move hot buyers toward real offers.",
+      value: "More offers",
+      score: 97,
+      body: `Hot buyer readiness checklist:\n- Pre-approval or proof of funds confirmed\n- Decision makers identified\n- Preferred close date known\n- Contingencies discussed\n- Earnest money comfort range known\n- Offer ceiling reviewed against comps\n- Must-have vs nice-to-have list captured\n\nBuyer call script:\nIf you like ${shortAddress}, the smart move is to understand your strongest offer before emotions take over. We will look at comparable sales, likely competition, terms, and your ceiling so you can move decisively without overpaying.\n\nOffer strategy packet:\n- Top 3 comps\n- Seller-facing strengths\n- Buyer risk notes\n- Suggested terms\n- Walk-away number\n\nAgent next action:\nFor every hot showing, schedule an offer-readiness call before the buyer leaves the driveway.`
+    },
+    {
+      id: "photo_ai",
+      title: "Photo-to-Marketing Brief",
+      subtitle: "Gemini-ready visual checklist for turning photos into stronger copy.",
+      value: "Vision AI",
+      score: 93,
+      body: `Photo analysis prompt:\nReview uploaded listing photos and return structured observations for a real estate agent. Identify room type, standout features, light quality, condition cues, lifestyle angle, buyer objections, and recommended caption.\n\nExpected photo labels:\n- Curb appeal\n- Kitchen\n- Living room\n- Primary suite\n- Office/flex space\n- Patio/outdoor area\n- Neighborhood amenity\n\nMarketing extraction for ${shortAddress}:\n- Hero photo should support: ${h[0]}\n- Secondary photo should support: ${h[1] || "daily comfort"}\n- Lifestyle angle should support: ${input.audience}\n\nOutput JSON:\n{\n  "room": "kitchen",\n  "features": ["natural light", "updated counters"],\n  "condition_notes": [],\n  "caption": "A kitchen designed for weeknight ease and weekend hosting.",\n  "objection_risk": null\n}`
+    },
+    {
+      id: "voice",
+      title: "Agent Voice Profile",
+      subtitle: "Save the agent's tone so every asset sounds like them.",
+      value: "Brand moat",
+      score: 91,
+      body: `Voice profile for ${input.agentName || "this agent"}:\nTone: ${input.tone || "confident, warm, premium but not cheesy"}\nDefault stance: helpful expert, not pushy salesperson.\nPreferred phrasing:\n- Clear next steps\n- Seller-safe market language\n- Buyer-friendly lifestyle framing\n- Confident but grounded pricing language\n\nDo say:\n- Here is what the market is telling us.\n- The strongest buyer response so far is...\n- The next smart move is...\n\nAvoid:\n- Overhyped luxury language unless the property supports it\n- Generic dream home claims\n- Fear-based pressure\n- Unsupported price promises\n\nReusable instruction:\nWrite like a sharp local agent who respects the client's intelligence and always gives a next step.`
+    },
+    {
+      id: "playbooks",
+      title: "Reusable Listing Playbooks",
+      subtitle: "Fast presets for common listing situations.",
+      value: "Repeatable",
+      score: 94,
+      body: `Recommended playbook: ${input.propertyType} for ${input.audience}\n\nStarter home:\nLead with affordability, commute, monthly payment confidence, and first-time buyer education.\n\nMove-up family home:\nLead with space, school/lifestyle fit, work-from-home utility, storage, and weekend showing urgency.\n\nLuxury listing:\nLead with scarcity, privacy, design, provenance, and private appointment experience.\n\nInvestor rental:\nLead with rent potential, cap-rate inputs, maintenance risk, neighborhood demand, and exit options.\n\nPrice reduction:\nLead with fresh opportunity, corrected market position, renewed showing push, and urgency without sounding desperate.\n\nFor ${shortAddress}, use the move-up/lifestyle playbook unless showing feedback indicates price sensitivity is the dominant objection.`
+    },
+    {
+      id: "calendar",
+      title: "14-Day Content Calendar",
+      subtitle: "Daily content plan from listing launch to seller review.",
+      value: "14 posts",
+      score: 92,
+      body: `Day 1: Just listed post with ${h[0]}\nDay 2: Reel showing the strongest room or feature\nDay 3: Neighborhood convenience post for ${location}\nDay 4: Buyer FAQ: price, showing windows, disclosures\nDay 5: Open house announcement\nDay 6: Behind-the-scenes agent walkthrough\nDay 7: Seller update and traffic recap\nDay 8: Feature spotlight: ${h[1] || "layout"}\nDay 9: Similar homes/comps education\nDay 10: Objection response post: ${objections[0] || "why the home is worth a tour"}\nDay 11: Buyer testimonial or agent credibility post\nDay 12: Last-call showing push\nDay 13: Offer-readiness education\nDay 14: Market update and next strategy\n\nRule:\nDo not post random content. Every post should create a showing, answer an objection, reassure the seller, or qualify a buyer.`
+    }
+  ];
+
   return [
     {
       id: "listing",
@@ -103,7 +170,8 @@ export function buildMarketingKit(input: PropertyInput): Asset[] {
       value: "Run the play",
       score: 97,
       body: `7-day launch calendar for ${shortAddress}:\nDay 0: finalize MLS copy, seller report, photo order, showing instructions, and disclosure packet.\nDay 1: publish listing, email buyer list, post social launch, start retargeting audience.\nDay 2: call hot leads, confirm showing slots, send lender-ready buyer packet.\nDay 3: publish neighborhood angle, price context, and behind-the-scenes reel.\nDay 4: seller update with traffic, saves, inquiries, showings, and objections.\nDay 5: open house push with SMS reminders, QR sign-in, and lender partner alert.\nDay 6: follow up with every visitor inside 60 minutes and segment buyers by urgency.\nDay 7: pricing and positioning review using showing volume, buyer feedback, and comp pressure.\n\nOpen-house capture fields:\n- Name, phone, email\n- Buyer timeline: now, 30 days, 90 days, browsing\n- Financing: pre-approved, cash, needs lender, unknown\n- Interest level: hot, warm, cold\n- Objection heard: price, layout, condition, location, timing\n- Next action: showing, comps, lender intro, offer call, nurture\n\nOffer readiness checklist:\n- Pre-approval or proof of funds\n- Preferred close date\n- Contingencies likely needed\n- Earnest money comfort range\n- Comp-backed offer ceiling\n- Decision maker confirmed\n\nRisk radar:\n${objections.length ? objections.map((item) => `- ${item}: prepare seller-approved response before showings.`).join("\n") : "- No major objections entered. Keep collecting buyer feedback after every showing."}\n\nRevenue hooks:\n- Seller plan: $49/listing or $99/mo for unlimited active listings.\n- Team plan: $199/mo for shared lead pipeline and seller updates.\n- Concierge upsell: $299/listing for done-for-you launch kit, ads, and weekly seller report.`
-    }
+    },
+    ...growthAssets
   ];
 }
 

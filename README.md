@@ -39,3 +39,7 @@ Cloudflare Pages Functions are scaffolded under `functions/` for health checks, 
 - `brightdata/real-estate-ai-agent` inspired the strict property import JSON schema.
 - `prolinkinfo/RealEstateCRM` reinforced the agent-first dashboard and communication workflow priorities.
 - `microrealestate/microrealestate`, `RealtorRocket`, and Easy Property Listings research informed the operational layer: property records, open-house capture, task boards, launch calendars, and listing website readiness.
+
+## Feature Surface
+
+REALITYCENTRAL now covers the practical listing lifecycle: launch copy, seller reports, social/email/ads, showing follow-up, lead scoring, CMA explanation, property import, agent ops, seller updates, open-house QR capture, objection intelligence, offer readiness, photo-to-marketing briefs, voice profiles, listing playbooks, and a 14-day content calendar.

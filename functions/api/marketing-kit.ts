@@ -27,7 +27,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 
     const prompt = [
       "Create a high-converting real estate marketing kit for an agent.",
-      "Return concise JSON with keys: listingDescription, socialCaptions, emailSequence, adHooks, sellerReport, followUpScripts, leadPipeline, cmaTalkingPoints, importSchema, agentOpsPlan.",
+      "Return concise JSON with keys: listingDescription, socialCaptions, emailSequence, adHooks, sellerReport, followUpScripts, leadPipeline, cmaTalkingPoints, importSchema, agentOpsPlan, sellerUpdate, openHouseCapture, objectionIntelligence, offerReadinessRoom, photoMarketingBrief, agentVoiceProfile, listingPlaybooks, contentCalendar.",
       `Property: ${payload.address}, ${payload.city}.`,
       `Specs: ${payload.beds} beds, ${payload.baths} baths, ${payload.sqft} sqft, price ${payload.price}.`,
       `Audience: ${payload.audience || "qualified buyers"}.`,
@@ -35,7 +35,14 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
       "Lead pipeline should score buyer urgency using activity, temperature, response speed, and source quality.",
       "CMA talking points should explain comparable selection using location, type, size, rooms, recency, and feature overlap.",
       "Import schema must use snake_case keys and never reuse third-party listing descriptions verbatim.",
-      "Agent ops plan should include a 7-day launch calendar, open-house capture fields, offer readiness checklist, and revenue upsells."
+      "Agent ops plan should include a 7-day launch calendar, open-house capture fields, offer readiness checklist, and revenue upsells.",
+      "Seller update should summarize activity, buyer reactions, objections, and next recommendation.",
+      "Open-house capture should include QR sign-in fields and immediate follow-up routing.",
+      "Objection intelligence should turn repeated feedback into seller-safe strategy.",
+      "Offer readiness should help a hot buyer become a serious offer.",
+      "Photo marketing brief should be suitable for Gemini vision analysis.",
+      "Agent voice profile should preserve the realtor's tone across all outputs.",
+      "Content calendar should produce 14 days of posts tied to showing demand."
     ].join("\n");
 
     return json({

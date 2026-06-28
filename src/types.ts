@@ -1,4 +1,22 @@
-export type Channel = "listing" | "social" | "email" | "ads" | "seller" | "followup" | "pipeline" | "cma" | "import" | "ops";
+export type Channel =
+  | "listing"
+  | "social"
+  | "email"
+  | "ads"
+  | "seller"
+  | "followup"
+  | "pipeline"
+  | "cma"
+  | "import"
+  | "ops"
+  | "seller_update"
+  | "open_house"
+  | "objections"
+  | "offer_room"
+  | "photo_ai"
+  | "voice"
+  | "playbooks"
+  | "calendar";
 
 export type PropertyInput = {
   address: string;

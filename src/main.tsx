@@ -14,9 +14,15 @@ import {
   Mail,
   Megaphone,
   MessageSquareText,
+  Mic2,
+  PanelsTopLeft,
+  QrCode,
+  ShieldAlert,
   Sparkles,
+  Tags,
   Upload,
-  Wand2
+  Wand2,
+  Workflow
 } from "lucide-react";
 import { buildMarketingKit, starterInput } from "./generator";
 import type { Asset, Channel, PropertyInput } from "./types";
@@ -32,7 +38,15 @@ const icons: Record<Channel, React.ReactNode> = {
   pipeline: <CalendarCheck size={18} />,
   cma: <BarChart3 size={18} />,
   import: <Import size={18} />,
-  ops: <ListChecks size={18} />
+  ops: <ListChecks size={18} />,
+  seller_update: <PanelsTopLeft size={18} />,
+  open_house: <QrCode size={18} />,
+  objections: <ShieldAlert size={18} />,
+  offer_room: <BadgeDollarSign size={18} />,
+  photo_ai: <Sparkles size={18} />,
+  voice: <Mic2 size={18} />,
+  playbooks: <Workflow size={18} />,
+  calendar: <Tags size={18} />
 };
 
 function App() {
