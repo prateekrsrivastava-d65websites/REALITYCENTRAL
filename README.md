@@ -38,3 +38,4 @@ Cloudflare Pages Functions are scaffolded under `functions/` for health checks, 
 - `InsulaCRM/InsulaCRM` inspired the CRM-lite stages, lead scoring, showing follow-up, and workflow ideas.
 - `brightdata/real-estate-ai-agent` inspired the strict property import JSON schema.
 - `prolinkinfo/RealEstateCRM` reinforced the agent-first dashboard and communication workflow priorities.
+- `microrealestate/microrealestate`, `RealtorRocket`, and Easy Property Listings research informed the operational layer: property records, open-house capture, task boards, launch calendars, and listing website readiness.

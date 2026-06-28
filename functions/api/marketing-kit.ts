@@ -27,14 +27,15 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 
     const prompt = [
       "Create a high-converting real estate marketing kit for an agent.",
-      "Return concise JSON with keys: listingDescription, socialCaptions, emailSequence, adHooks, sellerReport, followUpScripts, leadPipeline, cmaTalkingPoints, importSchema.",
+      "Return concise JSON with keys: listingDescription, socialCaptions, emailSequence, adHooks, sellerReport, followUpScripts, leadPipeline, cmaTalkingPoints, importSchema, agentOpsPlan.",
       `Property: ${payload.address}, ${payload.city}.`,
       `Specs: ${payload.beds} beds, ${payload.baths} baths, ${payload.sqft} sqft, price ${payload.price}.`,
       `Audience: ${payload.audience || "qualified buyers"}.`,
       `Highlights: ${payload.highlights || "strong layout, lifestyle appeal, local convenience"}.`,
       "Lead pipeline should score buyer urgency using activity, temperature, response speed, and source quality.",
       "CMA talking points should explain comparable selection using location, type, size, rooms, recency, and feature overlap.",
-      "Import schema must use snake_case keys and never reuse third-party listing descriptions verbatim."
+      "Import schema must use snake_case keys and never reuse third-party listing descriptions verbatim.",
+      "Agent ops plan should include a 7-day launch calendar, open-house capture fields, offer readiness checklist, and revenue upsells."
     ].join("\n");
 
     return json({

@@ -10,6 +10,7 @@ import {
   Download,
   Home,
   Import,
+  ListChecks,
   Mail,
   Megaphone,
   MessageSquareText,
@@ -30,7 +31,8 @@ const icons: Record<Channel, React.ReactNode> = {
   followup: <MessageSquareText size={18} />,
   pipeline: <CalendarCheck size={18} />,
   cma: <BarChart3 size={18} />,
-  import: <Import size={18} />
+  import: <Import size={18} />,
+  ops: <ListChecks size={18} />
 };
 
 function App() {

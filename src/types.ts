@@ -1,4 +1,4 @@
-export type Channel = "listing" | "social" | "email" | "ads" | "seller" | "followup" | "pipeline" | "cma" | "import";
+export type Channel = "listing" | "social" | "email" | "ads" | "seller" | "followup" | "pipeline" | "cma" | "import" | "ops";
 
 export type PropertyInput = {
   address: string;
