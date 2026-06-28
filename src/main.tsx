@@ -70,7 +70,7 @@ function App() {
         <div className="brand">
           <div className="mark"><Building2 size={22} /></div>
           <div>
-            <strong>Nonlinear Listings</strong>
+            <strong>REALITYCENTRAL</strong>
             <span>Agent revenue cockpit</span>
           </div>
         </div>

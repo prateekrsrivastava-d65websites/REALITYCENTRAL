@@ -85,7 +85,7 @@ export const starterInput: PropertyInput = {
   highlights: "renovated chef's kitchen, private home office, covered patio, mature trees, top-rated schools, 12 minutes to downtown",
   objections: "price sensitivity, older roof disclosed with credit, busy weekend showing schedule",
   agentName: "Maya Patel",
-  brokerage: "Nonlinear Realty Group",
+  brokerage: "RealityCentral Realty Group",
   phone: "(512) 555-0184",
-  email: "maya@nonlinearlistings.ai"
+  email: "maya@realitycentral.ai"
 };
